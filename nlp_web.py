@@ -5,25 +5,6 @@ import base64
 from PIL import Image
 import io  
 
-from googleapiclient.discovery import build
-from google.oauth2 import service_account
-
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SERVICE_ACCOUNT_FILE =r'C:\Users\user\Desktop\Github projects\Nlp_quiz\nlp-sheet-29485bc0daa8.json'
-
-creds=None
-creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-SAMPLE_SPREADSHEET_ID= "1dMms0EC-i5nr5lTamXMU3zBP2EtOjNivzL7v-exRdKE"
-service = build('sheets', 'v4', credentials=creds)
-
-# Call the Sheets API
-sheet = service.spreadsheets()
-result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range="entry!A1:G33").execute()
-values = result.get('values', [])
-print(result)
-
-
 
 st.markdown(
     '''
