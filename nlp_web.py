@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import base64
 from PIL import Image
 import io  
 
@@ -11,8 +12,8 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SERVICE_ACCOUNT_FILE =r'C:\Users\user\Desktop\Github projects\Nlp_quiz\nlp-sheet-29485bc0daa8.json'
 
 creds=None
-creds = service_account.Credentials.from_service_account_file('C:/Users/user/Desktop/Github projects/Nlp_quiz/nlp-sheet-29485bc0daa8.json')
-
+creds = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 SAMPLE_SPREADSHEET_ID= "1dMms0EC-i5nr5lTamXMU3zBP2EtOjNivzL7v-exRdKE"
 service = build('sheets', 'v4', credentials=creds)
 
@@ -56,15 +57,22 @@ st.markdown(
     ''',
     unsafe_allow_html=True
 )
+def display_image_as_base64(image_path, width=None):
+    with open(image_path, "rb") as img_file:
+        img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
 
-def update_google_sheet(sheet_service, sheet_id, range_name, values):
-    body = {
-        'values': values
-    }
-    result = sheet_service.values().update(
-        spreadsheetId=sheet_id, range=range_name,
-        valueInputOption='RAW', body=body).execute()
-    print(f'Updated {result.get("updatedCells")} cells.')
+    img = Image.open(image_path)
+    if width is not None:
+        aspect_ratio = img.width / img.height
+        img = img.resize((width, int(width / aspect_ratio)))
+
+    img_buffer = io.BytesIO()
+    img.save(img_buffer, format="PNG")
+    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
+
+    return f'<div style="text-align: center;"><img src="data:image/png;base64,{img_base64}" /></div>'
+logo = r"C:\Users\user\Desktop\Github projects\Nlp_quiz\ttelogo.png"
+#st.markdown(display_image_as_base64(logo, width=180), unsafe_allow_html=True)
 
 
 st.subheader("Sila isikan maklumat anda:")
@@ -78,11 +86,6 @@ age = st.number_input("Umur:", min_value=1, max_value=120, step=1)
 
 if st.button("Submit Details"):
     if name and gender != "--Pilih jantina--" and age:
-        # Add user's details to the sheet
-        sheet_range = "entry!A{}:C{}".format(len(values) + 1, len(values) + 1)
-        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=sheet_range,
-                              valueInputOption="RAW",
-                              body={"values": [[name, gender, age]]}).execute()
         st.success(f"Maklumat berjaya direkod.")
     else:
         st.warning("Sila isikan semua butiran di atas.")
@@ -194,23 +197,15 @@ if st.button("Hantar"):
 
         result = "".join(sorted_categories)
 
-        # Save user scores to the Google Sheet
-        sheet_range = "entry!D{}:H{}".format(len(values) + 1, len(values) + 1)
-        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=sheet_range,
-                              valueInputOption="RAW",
-                              body={"values": [[scores["V"], scores["A"], scores["K"], scores["D"], result]]}).execute()
-
         st.header(f"Susunan saya memproses maklumat ialah: {result}")
 
         scores.pop("total", None)
 
         df = pd.DataFrame.from_dict(scores, orient='index', columns=['score'])
-        df = df.reset_index().rename(columns={'index': 'category'})
+        df = df.reset_index().rename(columns={'index':'category'})
         chart = alt.Chart(df).mark_bar().encode(
             x='score',
             y=alt.Y('category', sort='-x'),
-            color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'],
-                                                        range=['#fde725', '#35b779', '#31688e', '#443983']))
-        )
+            color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'], range=['#fde725', '#35b779', '#31688e', '#443983']))
+        )  # Add the closing parenthesis here
         st.altair_chart(chart, use_container_width=True)
-
