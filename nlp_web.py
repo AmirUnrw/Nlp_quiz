@@ -95,8 +95,12 @@ age = st.number_input("Umur:", min_value=1, max_value=120, step=1)
 
 if st.button("Submit Details"):
     if name and gender != "--Pilih jantina--" and age:
+        # Add user's details to the sheet
+        sheet_range = "entry!A{}:C{}".format(len(values) + 1, len(values) + 1)
+        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=sheet_range,
+                              valueInputOption="RAW",
+                              body={"values": [[name, gender, age]]}).execute()
         st.success(f"Maklumat berjaya direkod.")
-        update_google_sheet(sheet, SAMPLE_SPREADSHEET_ID, "entry!A1:D1", [[name, gender, age, ""]])
     else:
         st.warning("Sila isikan semua butiran di atas.")
 
@@ -207,20 +211,23 @@ if st.button("Hantar"):
 
         result = "".join(sorted_categories)
 
+        # Save user scores to the Google Sheet
+        sheet_range = "entry!D{}:H{}".format(len(values) + 1, len(values) + 1)
+        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID, range=sheet_range,
+                              valueInputOption="RAW",
+                              body={"values": [[scores["V"], scores["A"], scores["K"], scores["D"], result]]}).execute()
+
         st.header(f"Susunan saya memproses maklumat ialah: {result}")
 
         scores.pop("total", None)
 
         df = pd.DataFrame.from_dict(scores, orient='index', columns=['score'])
-        df = df.reset_index().rename(columns={'index':'category'})
+        df = df.reset_index().rename(columns={'index': 'category'})
         chart = alt.Chart(df).mark_bar().encode(
             x='score',
             y=alt.Y('category', sort='-x'),
-            color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'], range=['#fde725', '#35b779', '#31688e', '#443983']))
-        )  # Add the closing parenthesis here
+            color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'],
+                                                        range=['#fde725', '#35b779', '#31688e', '#443983']))
+        )
         st.altair_chart(chart, use_container_width=True)
-
-        # Update the Google Sheet with the scores and result
-        update_google_sheet(sheet, SAMPLE_SPREADSHEET_ID, f"entry!E1:I1", [[scores["V"], scores["A"], scores["K"], scores["D"], result]])
-
 
