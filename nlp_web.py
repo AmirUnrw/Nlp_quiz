@@ -5,6 +5,26 @@ import base64
 from PIL import Image
 import io  
 
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+SERVICE_ACCOUNT_FILE =r'C:\Users\user\Desktop\Github projects\Nlp_quiz\nlp-sheet-29485bc0daa8.json'
+
+creds=None
+creds = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+SAMPLE_SPREADSHEET_ID= "1dMms0EC-i5nr5lTamXMU3zBP2EtOjNivzL7v-exRdKE"
+service = build('sheets', 'v4', credentials=creds)
+
+# Call the Sheets API
+sheet = service.spreadsheets()
+result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,range="entry!A1:G33").execute()
+values = result.get('values', [])
+print(result)
+
+
+
 st.markdown(
     '''
     <style>
@@ -54,6 +74,15 @@ def display_image_as_base64(image_path, width=None):
 logo = r"C:\Users\user\Desktop\Github projects\Nlp_quiz\ttelogo.png"
 #st.markdown(display_image_as_base64(logo, width=180), unsafe_allow_html=True)
 
+def update_google_sheet(sheet_service, sheet_id, range_name, values):
+    body = {
+        'values': values
+    }
+    result = sheet_service.values().update(
+        spreadsheetId=sheet_id, range=range_name,
+        valueInputOption='RAW', body=body).execute()
+    print(f'Updated {result.get("updatedCells")} cells.')
+
 
 st.subheader("Sila isikan maklumat anda:")
 
@@ -67,6 +96,7 @@ age = st.number_input("Umur:", min_value=1, max_value=120, step=1)
 if st.button("Submit Details"):
     if name and gender != "--Pilih jantina--" and age:
         st.success(f"Maklumat berjaya direkod.")
+        update_google_sheet(sheet, SAMPLE_SPREADSHEET_ID, "entry!A1:D1", [[name, gender, age, ""]])
     else:
         st.warning("Sila isikan semua butiran di atas.")
 
@@ -189,5 +219,8 @@ if st.button("Hantar"):
             color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'], range=['#fde725', '#35b779', '#31688e', '#443983']))
         )  # Add the closing parenthesis here
         st.altair_chart(chart, use_container_width=True)
+
+        # Update the Google Sheet with the scores and result
+        update_google_sheet(sheet, SAMPLE_SPREADSHEET_ID, f"entry!E1:I1", [[scores["V"], scores["A"], scores["K"], scores["D"], result]])
 
 
