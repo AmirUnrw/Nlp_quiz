@@ -11,8 +11,8 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SERVICE_ACCOUNT_FILE =r'C:\Users\user\Desktop\Github projects\Nlp_quiz\nlp-sheet-29485bc0daa8.json'
 
 creds=None
-creds = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+creds = service_account.Credentials.from_service_account_file('C:/Users/user/Desktop/Github projects/Nlp_quiz/nlp-sheet-29485bc0daa8.json')
+
 SAMPLE_SPREADSHEET_ID= "1dMms0EC-i5nr5lTamXMU3zBP2EtOjNivzL7v-exRdKE"
 service = build('sheets', 'v4', credentials=creds)
 
