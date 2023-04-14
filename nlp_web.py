@@ -52,7 +52,7 @@ def display_image_as_base64(image_path, width=None):
 
     return f'<div style="text-align: center;"><img src="data:image/png;base64,{img_base64}" /></div>'
 logo = r"C:\Users\user\Desktop\Github projects\Nlp_quiz\ttelogo.png"
-st.markdown(display_image_as_base64(logo, width=180), unsafe_allow_html=True)
+#st.markdown(display_image_as_base64(logo, width=180), unsafe_allow_html=True)
 
 
 st.subheader("Sila isikan maklumat anda:")
