@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-import base64
 from PIL import Image
 import io  
 
@@ -57,22 +56,6 @@ st.markdown(
     ''',
     unsafe_allow_html=True
 )
-def display_image_as_base64(image_path, width=None):
-    with open(image_path, "rb") as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
-
-    img = Image.open(image_path)
-    if width is not None:
-        aspect_ratio = img.width / img.height
-        img = img.resize((width, int(width / aspect_ratio)))
-
-    img_buffer = io.BytesIO()
-    img.save(img_buffer, format="PNG")
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-
-    return f'<div style="text-align: center;"><img src="data:image/png;base64,{img_base64}" /></div>'
-logo = r"C:\Users\user\Desktop\Github projects\Nlp_quiz\ttelogo.png"
-#st.markdown(display_image_as_base64(logo, width=180), unsafe_allow_html=True)
 
 def update_google_sheet(sheet_service, sheet_id, range_name, values):
     body = {

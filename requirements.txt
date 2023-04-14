@@ -1,6 +1,5 @@
 streamlit
 pandas
 altair
-base64
 Pillow
 google-api-python-client
