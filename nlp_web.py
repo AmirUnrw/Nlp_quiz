@@ -6,54 +6,8 @@ from PIL import Image
 import io  
 
 
-st.markdown(
-    '''
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-        .main-question {
-            font-family: 'Roboto', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .sub-question {
-            font-family: 'Roboto', sans-serif !important;
-            font-size: 16px !important;;
-        }
-        .sub-question select {
-            font-family: 'Roboto', sans-serif;
-            font-size: 14px;
-        }
-        
-        .question-text {
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .selectbox-width {
-            width: 50% !important;
-    </style>
-    ''',
-    unsafe_allow_html=True
-)
-def display_image_as_base64(image_path, width=None):
-    with open(image_path, "rb") as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
-
-    img = Image.open(image_path)
-    if width is not None:
-        aspect_ratio = img.width / img.height
-        img = img.resize((width, int(width / aspect_ratio)))
-
-    img_buffer = io.BytesIO()
-    img.save(img_buffer, format="PNG")
-    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
-
-    return f'<div style="text-align: center;"><img src="data:image/png;base64,{img_base64}" /></div>'
-logo = r"C:\Users\user\Desktop\Github projects\Nlp_quiz\ttelogo.png"
-#st.markdown(display_image_as_base64(logo, width=180), unsafe_allow_html=True)
+image_url = "https://www.ttelectronics.com/images/logo-colour.svg"  # Replace this with the URL of your image
+st.image(image_url, width=150)
 
 
 st.subheader("Sila isikan maklumat anda:")
@@ -74,46 +28,46 @@ if st.button("Submit Details"):
 
 
 questions = [
-    {"question": "rasa hati & keselesaan", "category": "K"},
-    {"question": "bunyi idea", "category": "A"},
-    {"question": "gambaran terhadap idea", "category": "V"},
-    {"question": "kajian mendalam tentang isu", "category": "D"},
-    {"question": "nada dan intonasi orang", "category": "A"},
-    {"question": "sama ada saya boleh melihat pandangan orang atau tidak", "category": "V"},
-    {"question": "logik dan rasional pandangan orang", "category": "D"},
-    {"question": "sama ada orang sensitif atau tdak terhadap perasaan saya", "category": "K"},
-    {"question": "rupa dan pemakaian saya", "category": "V"},
-    {"question": "berkongsi perasaan dan pengalaman", "category": "K"},
-    {"question": "mengetahui maksud perkataan saya difahami", "category": "D"},
-    {"question": "didengari dan diberi perhatian", "category": "A"},
-    {"question": "dengar dengan teliti dan bertanya soalan,untuk memastikan saya faham", "category": "A"},
-    {"question": "lebih suka untuk memikirkanya dahulu,dan memilih perkataan sesuai", "category": "D"},
-    {"question": "dihargai apabila diberi masa untuk mencari jawapannya dahulu", "category": "K"},
-    {"question": "jawab dengan cepat, dengan cara menggambarkan jawapanya", "category": "V"},
-    {"question": "peka terhadap bunyi di sekitar", "category": "A"},
-    {"question": "mudah memahami fakta dan maklumat", "category": "D"},
-    {"question": "sensitif dan fleksibel dalam perhubungan", "category": "K"},
-    {"question": "kreatif dan mampu menguruskan jumlah maklumat yang baik", "category": "V"},
-    {"question": "boleh menghubungkan diri dengan perasaan saya", "category": "K"},
-    {"question": "boleh melihat pandangan saya", "category": "V"},
-    {"question": "dengar dengan baik apa yang saya perkatakan dan cara disampaikan", "category": "A"},
-    {"question": "berminat dengan maksud perkara yang saya sampaikan", "category": "D"},
-    {"question": "memperbaiki proses dengan idea saya", "category": "A"},
-    {"question": "terlibat dengan proses perancangan dan menentukan visi", "category": "V"},
-    {"question": "mengatur perjalanan program dan menyusunnya", "category": "D"},
-    {"question": "membina perhubungan yang lebih baik antara ahli", "category": "K"},
-    {"question": "menunjukkannya kepada saya adalah paling jelas", "category": "V"},
-    {"question": "saya boleh ingat dengan baik hanya dengan mendengar", "category": "A"},
-    {"question": "menuliskannya membantu saya untuk memahaminya", "category": "K"},
-    {"question": "menerangkan fakta dengan cara logikal adalah lebih bermakna", "category": "D"},
-    {"question": "mempercayai orang lain, situasi atau konsep", "category": "D"},
-    {"question": "menjadi diplomatik, sebaliknya akan beterus terang", "category": "A"},
-    {"question": "memisahkan emosi diri dengan perasaan orang lain", "category": "K"},
-    {"question": "menjadi fleksibel dan menukar rancangan", "category": "V"},
-    {"question": "menerima inspirasi dari dalam", "category": "D"},
-    {"question": "memberitahu di mana idea baru boleh digunakan", "category": "A"},
-    {"question": "mengikuti kaedah yang telah dibuktikan berkesan", "category": "K"},
-    {"question": "mmerancang dan menguruskan aktiviti", "category": "V"}
+    {"question": "Rasa hati & keselesaan", "category": "K"},
+    {"question": "Bunyi idea", "category": "A"},
+    {"question": "Gambaran terhadap idea", "category": "V"},
+    {"question": "Kajian mendalam tentang isu", "category": "D"},
+    {"question": "Nada dan intonasi orang", "category": "A"},
+    {"question": "Sama ada saya boleh melihat pandangan orang atau tidak", "category": "V"},
+    {"question": "Logik dan rasional pandangan orang", "category": "D"},
+    {"question": "Sama ada orang sensitif atau tdak terhadap perasaan saya", "category": "K"},
+    {"question": "Rupa dan pemakaian saya", "category": "V"},
+    {"question": "Berkongsi perasaan dan pengalaman", "category": "K"},
+    {"question": "Mengetahui maksud perkataan saya difahami", "category": "D"},
+    {"question": "Didengari dan diberi perhatian", "category": "A"},
+    {"question": "Dengar dengan teliti dan bertanya soalan,untuk memastikan saya faham", "category": "A"},
+    {"question": "Lebih suka untuk memikirkanya dahulu,dan memilih perkataan sesuai", "category": "D"},
+    {"question": "Dihargai apabila diberi masa untuk mencari jawapannya dahulu", "category": "K"},
+    {"question": "Jawab dengan cepat, dengan cara menggambarkan jawapanya", "category": "V"},
+    {"question": "Peka terhadap bunyi di sekitar", "category": "A"},
+    {"question": "Mudah memahami fakta dan maklumat", "category": "D"},
+    {"question": "Sensitif dan fleksibel dalam perhubungan", "category": "K"},
+    {"question": "Kreatif dan mampu menguruskan jumlah maklumat yang baik", "category": "V"},
+    {"question": "Boleh menghubungkan diri dengan perasaan saya", "category": "K"},
+    {"question": "Boleh melihat pandangan saya", "category": "V"},
+    {"question": "Dengar dengan baik apa yang saya perkatakan dan cara disampaikan", "category": "A"},
+    {"question": "Berminat dengan maksud perkara yang saya sampaikan", "category": "D"},
+    {"question": "Memperbaiki proses dengan idea saya", "category": "A"},
+    {"question": "Terlibat dengan proses perancangan dan menentukan visi", "category": "V"},
+    {"question": "Mengatur perjalanan program dan menyusunnya", "category": "D"},
+    {"question": "Membina perhubungan yang lebih baik antara ahli", "category": "K"},
+    {"question": "Menunjukkannya kepada saya adalah paling jelas", "category": "V"},
+    {"question": "Saya boleh ingat dengan baik hanya dengan mendengar", "category": "A"},
+    {"question": "Menuliskannya membantu saya untuk memahaminya", "category": "K"},
+    {"question": "Menerangkan fakta dengan cara logikal adalah lebih bermakna", "category": "D"},
+    {"question": "Mempercayai orang lain, situasi atau konsep", "category": "D"},
+    {"question": "Menjadi diplomatik, sebaliknya akan beterus terang", "category": "A"},
+    {"question": "Memisahkan emosi diri dengan perasaan orang lain", "category": "K"},
+    {"question": "Menjadi fleksibel dan menukar rancangan", "category": "V"},
+    {"question": "Menerima inspirasi dari dalam", "category": "D"},
+    {"question": "Memberitahu di mana idea baru boleh digunakan", "category": "A"},
+    {"question": "Mengikuti kaedah yang telah dibuktikan berkesan", "category": "K"},
+    {"question": "Merancang dan menguruskan aktiviti", "category": "V"}
 ]
 
 likert_scale = [
@@ -153,15 +107,13 @@ statements = {
 responses = {}
 for index, question in enumerate(questions):
     if index in statements:
-        st.markdown(f'<div class="main-question">{statements[index]}</div>', unsafe_allow_html=True)
+        st.markdown(statements[index])
 
-    with st.markdown('<div class="sub-question">', unsafe_allow_html=True):
-        response = st.selectbox(question["question"], likert_scale, index=0, key=question["question"])
-        response_value = likert_scale_values[response]
-        responses[question["question"]] = {"response": response, "category": question["category"], "value": response_value}
-        scores[question["category"]] += response_value
-        scores["total"] += response_value
-    st.markdown('</div>', unsafe_allow_html=True)
+    response = st.selectbox(question["question"], likert_scale, index=0, key=question["question"])
+    response_value = likert_scale_values[response]
+    responses[question["question"]] = {"response": response, "category": question["category"], "value": response_value}
+    scores[question["category"]] += response_value
+    scores["total"] += response_value
 
     all_questions_answered = all(response["response"] != "--Sila pilih--" for response in responses.values())
 
@@ -188,5 +140,5 @@ if st.button("Hantar"):
             x='score',
             y=alt.Y('category', sort='-x'),
             color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'], range=['#fde725', '#35b779', '#31688e', '#443983']))
-        )  # Add the closing parenthesis here
+        )
         st.altair_chart(chart, use_container_width=True)
