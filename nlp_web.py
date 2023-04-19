@@ -27,7 +27,7 @@ if st.button("Submit Details"):
 
 
 
-questions = [
+sub_questions = [
     {"question": "Rasa hati & keselesaan", "category": "K"},
     {"question": "Bunyi idea", "category": "A"},
     {"question": "Gambaran terhadap idea", "category": "V"},
@@ -88,28 +88,28 @@ likert_scale_values = {
 
 scores = {"V": 0, "A": 0, "K": 0, "D": 0, "total": 0}
 
-st.title("Quiz Neural Linguistic Programming")
+st.header("Quiz Neural Linguistic Programming")
 
-statements = {
-    0: "1.Saya membuat keputusan penting bedasarkan:",
-    4: "2.Ketika berlaku pertelingkahan, saya akan paling dipengaruhi oleh:",
-    8: "3.Apabila berkomunikasi dengan orang, apa yang penting kepada saya ialah:",
-    12:"4.Apabila orang bertanya soalan yang penting, saya akan",
-    16:"5.Saya anggap diri saya:",
-    20:"6.Orang lain akan dapat mengenali saya dengan baik apabila mereka:",
-    24:"7.Apabila menjalankan projek dengan orang lain,saya lebih suka:",
-    28:"8.Apabila menerangkan sesuatu kepada saya:",
-    32:"9.Ketika stress, cabaran paling utama buat saya ialah:",
-    36:"10.Saya menanggap mudah dan selesa untuk:"
 
+main_question = {
+    0: "<b style='font-size: 15px;'>1. Saya membuat keputusan penting bedasarkan:</b>",
+    4: "<b style='font-size: 15px;'>2. Ketika berlaku pertelingkahan, saya akan paling dipengaruhi oleh:</b>",
+    8: "<b style='font-size: 15px;'>3. Apabila berkomunikasi dengan orang, apa yang penting kepada saya ialah:</b>",
+    12: "<b style='font-size: 15px;'>4. Apabila orang bertanya soalan yang penting, saya akan</b>",
+    16: "<b style='font-size: 15px;'>5. Saya anggap diri saya:</b>",
+    20: "<b style='font-size: 15px;'>6. Orang lain akan dapat mengenali saya dengan baik apabila mereka:</b>",
+    24: "<b style='font-size: 15px;'>7. Apabila menjalankan projek dengan orang lain, saya lebih suka:</b>",
+    28: "<b style='font-size: 15px;'>8. Apabila menerangkan sesuatu kepada saya:</b>",
+    32: "<b style='font-size: 15px;'>9. Ketika stress, cabaran paling utama buat saya ialah:</b>",
+    36: "<b style='font-size: 15px;'>10. Saya menanggap mudah dan selesa untuk:</b>"
 }
 
 responses = {}
-for index, question in enumerate(questions):
-    if index in statements:
-        st.markdown(statements[index])
+for index, question in enumerate(sub_questions):
+    if index in main_question:
+        st.markdown(main_question[index], unsafe_allow_html=True)
 
-    response = st.selectbox(question["question"], likert_scale, index=0, key=question["question"])
+    response = st.selectbox(question["question"], likert_scale, index=0, key=index)
     response_value = likert_scale_values[response]
     responses[question["question"]] = {"response": response, "category": question["category"], "value": response_value}
     scores[question["category"]] += response_value
@@ -121,24 +121,25 @@ if st.button("Hantar"):
     if not all_questions_answered:
         st.warning("Sila pilih jawapan bagi setiap soalan sebelum menghantar.")
     else:
-        for question_key in responses:
-            question_response = responses[question_key]
-            scores[question_response["category"]] += likert_scale_values[question_response["response"]]
-
+        
         sorted_categories = sorted(scores.keys(), key=lambda x: scores[x], reverse=True)
         sorted_categories.remove("total")
 
         result = "".join(sorted_categories)
 
-        st.header(f"Susunan saya memproses maklumat ialah: {result}")
-
-        scores.pop("total", None)
+        st.header(f"Susunan anda memproses maklumat ialah: {result}")
 
         df = pd.DataFrame.from_dict(scores, orient='index', columns=['score'])
         df = df.reset_index().rename(columns={'index':'category'})
+
+        # Filter the DataFrame to remove the 'total' category
+        df = df.loc[df['category'] != 'total']
+
         chart = alt.Chart(df).mark_bar().encode(
-            x='score',
-            y=alt.Y('category', sort='-x'),
+            y='score',
+            x=alt.X('category', sort='-y', axis=alt.Axis(labelAngle=0)),
             color=alt.Color('category', scale=alt.Scale(domain=['V', 'A', 'K', 'D'], range=['#fde725', '#35b779', '#31688e', '#443983']))
         )
         st.altair_chart(chart, use_container_width=True)
+
+
