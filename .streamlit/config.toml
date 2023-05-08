@@ -1,9 +1,0 @@
-[global]
-email = "m2000amir@gmail.com"
-
-[theme]
-primaryColor = "#4caf50"
-backgroundColor = "#2c2c2c"
-secondaryBackgroundColor = "#3a3a3a"
-textColor = "#f0f0f0"
-font = "sans-serif"
