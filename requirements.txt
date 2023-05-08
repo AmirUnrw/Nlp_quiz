@@ -3,3 +3,4 @@ pandas
 altair
 Pillow
 google-api-python-client
+emoji
