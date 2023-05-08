@@ -7,9 +7,7 @@ import emoji
 st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
 st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line or spacing before the "Submit" button
 
-image_url = "https://www.ttelectronics.com/images/logo-colour.svg"
-st.image(image_url, width=200)
-
+# Display content based on the selected tab
 st.title("🧠Quiz Neuro-Linguistic Programming")
 st.write(
     """
