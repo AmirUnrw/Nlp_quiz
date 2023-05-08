@@ -1,25 +1,38 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-import base64
 from PIL import Image
-import io  
+import emoji
 
+st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
+st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line or spacing before the "Submit" button
 
-image_url = "https://www.ttelectronics.com/images/logo-colour.svg"  # Replace this with the URL of your image
-st.image(image_url, width=150)
+image_url = "https://www.ttelectronics.com/images/logo-colour.svg"
+st.image(image_url, width=200)
 
-
-st.subheader("Sila isikan maklumat anda:")
+st.title("🧠Quiz Neuro-Linguistic Programming")
+st.write(
+    """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, quam vel pretium dignissim, dui erat tempor ante, 
+non venenatis orci erat a metus. Donec auctor dolor scelerisque ligula cursus, quis luctus felis blandit. Integer nec molestie elit, 
+malesuada tempor quam. Nunc faucibus sit amet arcu in eleifend. Morbi in molestie nunc, ut ullamcorper sem. Nullam euismod elementum 
+lacus tincidunt
+""")
+st.subheader("📝Sila isikan maklumat anda:")
 
 name = st.text_input("Nama:")
 
+gender_age_columns = st.columns(2, gap='medium')  # create two columns for gender and age
+
+# Jantina input box in the first column
 gender_options = ["--Pilih jantina--", "LELAKI", "PEREMPUAN"]
-gender = st.selectbox("Jantina:", gender_options)
+gender = gender_age_columns[0].selectbox("Jantina:", gender_options)
 
-age = st.number_input("Umur:", min_value=1, max_value=120, step=1)
+# Umur input box in the second column
+age = gender_age_columns[1].number_input("Umur:", min_value=1, max_value=80, step=1)
+st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line or spacing before the "Submit" button
 
-if st.button("Submit Details"):
+if st.button("Hantar Maklumat"):
     if name and gender != "--Pilih jantina--" and age:
         st.success(f"Maklumat berjaya direkod.")
     else:
@@ -87,35 +100,51 @@ likert_scale_values = {
 }
 
 scores = {"V": 0, "A": 0, "K": 0, "D": 0, "total": 0}
-
-st.header("Quiz Neural Linguistic Programming")
-
+st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line 
+st.subheader("📋Sila jawab semua soalan di bawah")
+st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line 
 
 main_question = {
-    0: "<b style='font-size: 15px;'>1. Saya membuat keputusan penting bedasarkan:</b>",
-    4: "<b style='font-size: 15px;'>2. Ketika berlaku pertelingkahan, saya akan paling dipengaruhi oleh:</b>",
-    8: "<b style='font-size: 15px;'>3. Apabila berkomunikasi dengan orang, apa yang penting kepada saya ialah:</b>",
-    12: "<b style='font-size: 15px;'>4. Apabila orang bertanya soalan yang penting, saya akan</b>",
-    16: "<b style='font-size: 15px;'>5. Saya anggap diri saya:</b>",
-    20: "<b style='font-size: 15px;'>6. Orang lain akan dapat mengenali saya dengan baik apabila mereka:</b>",
-    24: "<b style='font-size: 15px;'>7. Apabila menjalankan projek dengan orang lain, saya lebih suka:</b>",
-    28: "<b style='font-size: 15px;'>8. Apabila menerangkan sesuatu kepada saya:</b>",
-    32: "<b style='font-size: 15px;'>9. Ketika stress, cabaran paling utama buat saya ialah:</b>",
-    36: "<b style='font-size: 15px;'>10. Saya menanggap mudah dan selesa untuk:</b>"
+    0: "<b style='font-size: 19px; color: #003478;'>1. Saya membuat keputusan penting bedasarkan:</b>",
+    4: "<b style='font-size: 19px; color: #003478;'>2. Ketika berlaku pertelingkahan, saya akan paling dipengaruhi oleh:</b>",
+    8: "<b style='font-size: 19px; color: #003478;'>3. Apabila berkomunikasi dengan orang, apa yang penting kepada saya ialah:</b>",
+    12: "<b style='font-size: 19px; color: #003478;'>4. Apabila orang bertanya soalan yang penting, saya akan:</b>",
+    16: "<b style='font-size: 19px; color: #003478;'>5. Saya anggap diri saya:</b>",
+    20: "<b style='font-size: 19px; color: #003478;'>6. Orang lain akan dapat mengenali saya dengan baik apabila mereka:</b>",
+    24: "<b style='font-size: 19px; color: #003478;'>7. Apabila menjalankan projek dengan orang lain, saya lebih suka:</b>",
+    28: "<b style='font-size: 19px; color: #003478;'>8. Apabila menerangkan sesuatu kepada saya:</b>",
+    32: "<b style='font-size: 19px; color: #003478;'>9. Ketika stress, cabaran paling utama buat saya ialah:</b>",
+    36: "<b style='font-size: 19px; color: #003478;'>10. Saya menanggap mudah dan selesa untuk:</b>"
 }
 
 responses = {}
+current_main_question_index = 0
+question_containers = []
+
+# Create containers for each main question
+
+for i in range(len(main_question)):  # Change this to the number of main questions
+    container = st.container()
+    question_containers.append(container)
+    st.markdown("<br>", unsafe_allow_html=True) # Add an empty line
+
+
 for index, question in enumerate(sub_questions):
     if index in main_question:
-        st.markdown(main_question[index], unsafe_allow_html=True)
+        with question_containers[current_main_question_index]:
+            st.write(main_question[index], unsafe_allow_html=True)
 
-    response = st.selectbox(question["question"], likert_scale, index=0, key=index)
-    response_value = likert_scale_values[response]
-    responses[question["question"]] = {"response": response, "category": question["category"], "value": response_value}
-    scores[question["category"]] += response_value
-    scores["total"] += response_value
+        current_main_question_index += 1
 
-    all_questions_answered = all(response["response"] != "--Sila pilih--" for response in responses.values())
+    with question_containers[current_main_question_index - 1]:
+        columns = st.columns(2, gap='small')
+        columns[0].markdown(f"<br><span style='font-size: 17px;'>&nbsp;&nbsp;{question['question']}</span>", unsafe_allow_html=True)
+        response = columns[1].selectbox("", likert_scale, index=0, key=index)
+        response_value = likert_scale_values[response]
+        responses[question["question"]] = {"response": response, "category": question["category"], "value": response_value}
+        scores[question["category"]] += response_value
+        scores["total"] += response_value
+        all_questions_answered = all(response["response"] != "--Sila pilih--" for response in responses.values())
 
 if st.button("Hantar"):
     if not all_questions_answered:
@@ -142,4 +171,35 @@ if st.button("Hantar"):
         )
         st.altair_chart(chart, use_container_width=True)
 
+        # Define the image URLs for each category
+        category_images = {
+            'V': "https://i.postimg.cc/Lsm3t2wf/e.png",
+            'A': "https://i.postimg.cc/fTmT61wD/a.png",
+            'K': "https://i.postimg.cc/8zZmmqS0/k.png",
+            'D': "https://i.postimg.cc/yYvZMcbJ/r.png"
+        }
 
+        # Define the text for each category
+        category_texts = {
+            'V': "The vindustry continues to progress and its development has never stopped. Contributors of each blockchain keep developing each segment of the industry and the whole crypto ecosystem.",
+            'A': "The a industry continues to progress and its development has never stopped. Contributors of each blockchain keep developing each segment of the industry and the whole crypto ecosystem.",
+            'K': "The k industry continues to progress and its development has never stopped. Contributors of each blockchain keep developing each segment of the industry and the whole crypto ecosystem.",
+            'D': "The d industry continues to progress and its development has never stopped. Contributors of each blockchain keep developing each segment of the industry and the whole crypto ecosystem."
+        }
+
+        # Create a container for the images and text
+        result_container = st.container()
+
+        # Create columns inside the container
+        result_columns = result_container.columns(len(sorted_categories))
+
+        # Loop through the sorted categories and display the image and text in the same column
+        for i, category in enumerate(sorted_categories):
+            result_columns[i].image(category_images[category], width=200)
+            result_columns[i].markdown(category_texts[category])
+
+
+   
+
+
+        

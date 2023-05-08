@@ -2,9 +2,8 @@
 email = "m2000amir@gmail.com"
 
 [theme]
-base = "dark"
-primaryColor = "#E694FF"
-backgroundColor = "#00172B"
-secondaryBackgroundColor = "#0083B8"
-textColor = "#DCDCDC"
-font = "sans serif"
+primaryColor = "#4caf50"
+backgroundColor = "#2c2c2c"
+secondaryBackgroundColor = "#3a3a3a"
+textColor = "#f0f0f0"
+font = "sans-serif"
