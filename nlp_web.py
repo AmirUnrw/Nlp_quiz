@@ -204,14 +204,14 @@ if st.button("Hantar"):
 - Suka penjelasan ringkas & padat
 ''',
             'A': '''Ciri-ciri orang **AUDITORI**:
--Cakap dengan fasih
--Sentuh mulut dan telinga
--Belajar dengan mendengar
--Pandang ke sisi
--Suka berbual
--Vokal dalam memberi pandangan
--Banyak idea dan suka beri cadangan
--Lebih kasual
+- Cakap dengan fasih
+- Sentuh mulut dan telinga
+- Belajar dengan mendengar
+- Pandang ke sisi
+- Suka berbual
+- Vokal dalam memberi pandangan
+- Banyak idea dan suka beri cadangan
+- Lebih kasual
 ''',
             'K': '''Ciri-ciri orang **KINESTETIK**:
 - Cakap sangat perlahan
