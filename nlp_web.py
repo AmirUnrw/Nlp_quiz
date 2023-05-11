@@ -193,51 +193,51 @@ if st.button("Hantar"):
         # Define the text for each category
         category_texts = {
             'V': '''Ciri-ciri orang **VISUAL**:
-                    - Cakap laju
-                    - Banyak pergerakan tangan
-                    - Berfikir dengan gambar
-                    - Suka pandang ke atas
-                    - Kurang sabar
-                    - Fokus pada hasil
-                    - Menepati masa
-                    - Beri perhatian pada apa yang boleh dilihat
-                    - Suka penjelasan ringkas & padat
+- Cakap laju
+- Banyak pergerakan tangan
+- Berfikir dengan gambar
+- Suka pandang ke atas
+- Kurang sabar
+- Fokus pada hasil
+- Menepati masa
+- Beri perhatian pada apa yang boleh dilihat
+- Suka penjelasan ringkas & padat
 
-                    ''',
+''',
             'A': '''Ciri-ciri orang **AUDITORI**:
-                    - Berfikir dahulu sebelum bercakap
-                    - Berfikir dengan rasional dan logikal
-                    - Sangat teliti
-                    - Suka memahami keadaan sekeliling
-                    - Suka belajar dengan memikirkannya
-                    - Tidak suka di arah
-                    - Perlukan masa untuk memproses maklumat
+- Berfikir dahulu sebelum bercakap
+- Berfikir dengan rasional dan logikal
+- Sangat teliti
+- Suka memahami keadaan sekeliling
+- Suka belajar dengan memikirkannya
+- Tidak suka di arah
+- Perlukan masa untuk memproses maklumat
 
 
-                    ''',
+''',
             'K': '''Ciri-ciri orang **KINESTETIK**:
-                    - Cakap sangat perlahan
-                    - Sentuh dada atau dagu
-                    - Pandang ke bawah
-                    - Belajar dengan membuat
-                    - Sensitif pada orang lain
-                    - Ahli pasukan yang baik
-                    - Teliti dalam pekerjaan yang dilakukan
-                    - Setia
+- Cakap sangat perlahan
+- Sentuh dada atau dagu
+- Pandang ke bawah
+- Belajar dengan membuat
+- Sensitif pada orang lain
+- Ahli pasukan yang baik
+- Teliti dalam pekerjaan yang dilakukan
+- Setia
 
 
-                    ''',
+''',
             'D': '''Ciri-ciri orang **DIGITAL**:
-                    - Berfikir dahulu sebelum bercakap
-                    - Berfikir dengan rasional dan logikal
-                    - Sangat teliti
-                    - Suka memahami keadaan sekeliling
-                    - Suka belajar dengan memikirkannya
-                    - Tidak suka di arah
-                    - Perlukan masa untuk memproses maklumat
+- Berfikir dahulu sebelum bercakap
+- Berfikir dengan rasional dan logikal
+- Sangat teliti
+- Suka memahami keadaan sekeliling
+- Suka belajar dengan memikirkannya
+- Tidak suka di arah
+- Perlukan masa untuk memproses maklumat
 
 
-                    '''
+'''
         }
 
         # Create a container for the images and text
