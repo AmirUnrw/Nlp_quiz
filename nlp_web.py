@@ -3,6 +3,18 @@ import pandas as pd
 import altair as alt
 from PIL import Image
 import emoji
+from google.oauth2 import service_account
+from gsheetsdb import connect
+
+has_submitted_details = False
+# Create a connection object.
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
+    scopes=[
+        "https://www.googleapis.com/auth/spreadsheets",
+    ],
+)
+conn = connect(credentials=credentials)
 
 st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
 
@@ -28,8 +40,13 @@ st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line or spacing befo
 if st.button("Hantar Maklumat"):
     if name and gender != "--Pilih jantina--" and age:
         st.success(f"Maklumat berjaya direkod.")
+        # Record data to Google Sheets
+        sheet_url = st.secrets["private_gsheets_url"]
+        query = f'INSERT INTO "{sheet_url}" (NAMA, JANTINA, UMUR) VALUES ("{name}", "{gender}", {age})'
+        conn.execute(query)
     else:
         st.warning("Sila isikan semua butiran di atas.")
+
 
 
 
@@ -143,12 +160,15 @@ if st.button("Hantar"):
     if not all_questions_answered:
         st.warning("Sila pilih jawapan bagi setiap soalan sebelum menghantar.")
     else:
-        
         sorted_categories = sorted(scores.keys(), key=lambda x: scores[x], reverse=True)
         sorted_categories.remove("total")
 
-        result = "".join(sorted_categories)
-
+        result = "".join(sorted_categories) 
+        # Record scores to Google Sheets
+        sheet_url = st.secrets["private_gsheets_url"]
+        query = f'UPDATE "{sheet_url}" SET V = {scores["V"]}, A = {scores["A"]}, K = {scores["K"]}, D = {scores["D"]}, SUSUNAN = "{result}" WHERE NAMA = "{name}" AND JANTINA = "{gender}" AND UMUR = {age}'
+        conn.execute(query)
+        
         st.header(f"Susunan anda memproses maklumat ialah: {result}")
 
         df = pd.DataFrame.from_dict(scores, orient='index', columns=['score'])
