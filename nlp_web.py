@@ -12,7 +12,7 @@ st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
 st.title("🧠Quiz Neuro-Linguistic Programming")
 st.write(
     """
-Hai! Adakah anda ingin tahu bagaimana anda berkomunikasi dan membuat keputusan?\
+Hai! Adakah anda ingin tahu bagaimana anda berkomunikasi dan membuat keputusan?
     Kuiz ini direka untuk membantu anda mengenal pasti kecenderungan anda dalam berkomunikasi dan membuat keputusan yang terbahagi kepada empat kategori: **Visual** (**V**), **Auditori** (**A**), **Kinestetik** (**K**), **Digital** (**D**). Dengan memahami gaya unik anda, anda boleh meningkatkan kesedaran diri, memperbaiki interaksi dengan orang lain, dan membuat keputusan yang lebih efektif dalam pelbagai situasi. Ikuti kuiz ini untuk mengetahui gaya peribadi anda dan membuka kunci ke arah komunikasi dan kerjasama dalam organisasi yang lebih baik!
 """)
 st.subheader("📝Sila isikan maklumat anda:")
@@ -192,7 +192,10 @@ if st.button("Hantar"):
 
         # Define the text for each category
         category_texts = {
-            'V': "Individu visual memproses informasi dan berkomunikasi secara efektif melalui gambar, diagram, dan alat bantu visual. Mereka adalah pembicara yang cepat, sering menggunakan gerak tangan, dan sangat peka. Pemikir visual dikenal karena ketidaksabaran mereka, fokus pada hasil, dan perhatian pada penampilan. Mereka lebih suka penjelasan ringkas dan secara alami tepat waktu",
+            'V': '''Category 4:
+- Characteristic 1
+- Characteristic 2
+- Characteristic 3''',
             'A': "Orang dalam kategori ini belajar dengan baik dengan mendengarkan dan terlibat dengan baik dalam percakapan. Mereka fasih berbicara dan cenderung menyentuh mulut atau telinga saat berkomunikasi. Pemikir auditori suka mengobrol, vokal dalam menyampaikan pendapat, dan seringkali memberikan saran yang kreatif. Mereka cenderung lebih santai dan berorientasi sosial.",
             'K': "Individu kinestetik mengandalkan indera fisik mereka untuk memproses informasi dan berkomunikasi. Mereka berbicara perlahan, menggunakan bahasa tubuh untuk menyampaikan perasaan, dan lebih suka pengalaman praktis. Dikenal karena sensitivitas, kesetiaan, dan kerja tim mereka, pemikir kinestetik unggul dalam tugas yang memerlukan perhatian teliti pada detail. Mereka juga empatik dan menjadi anggota tim yang hebat.",
             'D': "Berfikir logis dan rasional, individu digital memproses informasi secara terstruktur. Mereka berfikir sebelum berbicara dan sangat detail. Individu ini menikmati memahami lingkungan sekitar mereka dan belajar dengan memikirkan gagasan. Pemikir digital menghargai otonomi mereka, memiliki rasa tanggung jawab yang kuat, dan mungkin memerlukan waktu tambahan untuk memproses informasi baru.."
