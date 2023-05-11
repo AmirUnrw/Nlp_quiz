@@ -12,7 +12,8 @@ st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
 st.title("🧠Quiz Neuro-Linguistic Programming")
 st.write(
     """
-Hai! Adakah anda ingin tahu bagaimana anda berkomunikasi dan membuat keputusan?\n\tKuiz ini direka untuk membantu anda mengenal pasti kecenderungan anda dalam berkomunikasi dan membuat keputusan yang terbahagi kepada empat kategori: **Visual** (**V**), **Auditori** (**A**), **Kinestetik** (**K**), **Digital** (**D**). Dengan memahami gaya unik anda, anda boleh meningkatkan kesedaran diri, memperbaiki interaksi dengan orang lain, dan membuat keputusan yang lebih efektif dalam pelbagai situasi. Ikuti kuiz ini untuk mengetahui gaya peribadi anda dan membuka kunci ke arah komunikasi dan kerjasama dalam organisasi yang lebih baik!
+Hai! Adakah anda ingin tahu bagaimana anda berkomunikasi dan membuat keputusan?
+    Kuiz ini direka untuk membantu anda mengenal pasti kecenderungan anda dalam berkomunikasi dan membuat keputusan yang terbahagi kepada empat kategori: **Visual** (**V**), **Auditori** (**A**), **Kinestetik** (**K**), **Digital** (**D**). Dengan memahami gaya unik anda, anda boleh meningkatkan kesedaran diri, memperbaiki interaksi dengan orang lain, dan membuat keputusan yang lebih efektif dalam pelbagai situasi. Ikuti kuiz ini untuk mengetahui gaya peribadi anda dan membuka kunci ke arah komunikasi dan kerjasama dalam organisasi yang lebih baik!
 """)
 st.subheader("📝Sila isikan maklumat anda:")
 
