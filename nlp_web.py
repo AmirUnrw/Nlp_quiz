@@ -116,16 +116,16 @@ st.subheader("📋Sila jawab semua soalan di bawah")
 st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line 
 
 main_question = {
-    0: "<b style='font-size: 19px; color: #003478;'>1. Saya membuat keputusan penting bedasarkan:</b>",
-    4: "<b style='font-size: 19px; color: #003478;'>2. Ketika berlaku pertelingkahan, saya akan paling dipengaruhi oleh:</b>",
-    8: "<b style='font-size: 19px; color: #003478;'>3. Apabila berkomunikasi dengan orang, apa yang penting kepada saya ialah:</b>",
-    12: "<b style='font-size: 19px; color: #003478;'>4. Apabila orang bertanya soalan yang penting, saya akan:</b>",
-    16: "<b style='font-size: 19px; color: #003478;'>5. Saya anggap diri saya:</b>",
-    20: "<b style='font-size: 19px; color: #003478;'>6. Orang lain akan dapat mengenali saya dengan baik apabila mereka:</b>",
-    24: "<b style='font-size: 19px; color: #003478;'>7. Apabila menjalankan projek dengan orang lain, saya lebih suka:</b>",
-    28: "<b style='font-size: 19px; color: #003478;'>8. Apabila menerangkan sesuatu kepada saya:</b>",
-    32: "<b style='font-size: 19px; color: #003478;'>9. Ketika stress, cabaran paling utama buat saya ialah:</b>",
-    36: "<b style='font-size: 19px; color: #003478;'>10. Saya menanggap mudah dan selesa untuk:</b>"
+    0: "<b style='font-size: 19px; color: #0000FF;'>1. Saya membuat keputusan penting bedasarkan:</b>",
+    4: "<b style='font-size: 19px; color: #0000FF;'>2. Ketika berlaku pertelingkahan, saya akan paling dipengaruhi oleh:</b>",
+    8: "<b style='font-size: 19px; color: #0000FF;'>3. Apabila berkomunikasi dengan orang, apa yang penting kepada saya ialah:</b>",
+    12: "<b style='font-size: 19px; color: #0000FF;'>4. Apabila orang bertanya soalan yang penting, saya akan:</b>",
+    16: "<b style='font-size: 19px; color: #0000FF;'>5. Saya anggap diri saya:</b>",
+    20: "<b style='font-size: 19px; color: #0000FF;'>6. Orang lain akan dapat mengenali saya dengan baik apabila mereka:</b>",
+    24: "<b style='font-size: 19px; color: #0000FF;'>7. Apabila menjalankan projek dengan orang lain, saya lebih suka:</b>",
+    28: "<b style='font-size: 19px; color: #0000FF;'>8. Apabila menerangkan sesuatu kepada saya:</b>",
+    32: "<b style='font-size: 19px; color: #0000FF;'>9. Ketika stress, cabaran paling utama buat saya ialah:</b>",
+    36: "<b style='font-size: 19px; color: #0000FF;'>10. Saya menanggap mudah dan selesa untuk:</b>"
 }
 
 responses = {}
