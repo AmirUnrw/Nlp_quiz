@@ -192,23 +192,52 @@ if st.button("Hantar"):
 
         # Define the text for each category
         category_texts = {
-            'V': '''Ciri ciri orang **VISUAL**:
-- Cakap laju
-- Banyak pergerakan tangan
-- Berfikir dengan gambar
-- Suka pandang ke atas
-- Kurang sabar
-- Fokus pada hasil
-- Menepati masa
-- Beri perhatian pada apa yang boleh dilihat
-- Suka penjelasan ringkas & padat
-- Characteristic 1
-- Characteristic 2
-- Characteristic 3
-''',
-            'A': "Orang dalam kategori ini belajar dengan baik dengan mendengarkan dan terlibat dengan baik dalam percakapan. Mereka fasih berbicara dan cenderung menyentuh mulut atau telinga saat berkomunikasi. Pemikir auditori suka mengobrol, vokal dalam menyampaikan pendapat, dan seringkali memberikan saran yang kreatif. Mereka cenderung lebih santai dan berorientasi sosial.",
-            'K': "Individu kinestetik mengandalkan indera fisik mereka untuk memproses informasi dan berkomunikasi. Mereka berbicara perlahan, menggunakan bahasa tubuh untuk menyampaikan perasaan, dan lebih suka pengalaman praktis. Dikenal karena sensitivitas, kesetiaan, dan kerja tim mereka, pemikir kinestetik unggul dalam tugas yang memerlukan perhatian teliti pada detail. Mereka juga empatik dan menjadi anggota tim yang hebat.",
-            'D': "Berfikir logis dan rasional, individu digital memproses informasi secara terstruktur. Mereka berfikir sebelum berbicara dan sangat detail. Individu ini menikmati memahami lingkungan sekitar mereka dan belajar dengan memikirkan gagasan. Pemikir digital menghargai otonomi mereka, memiliki rasa tanggung jawab yang kuat, dan mungkin memerlukan waktu tambahan untuk memproses informasi baru.."
+            'V': '''Ciri-ciri orang **VISUAL**:
+                    - Cakap laju
+                    - Banyak pergerakan tangan
+                    - Berfikir dengan gambar
+                    - Suka pandang ke atas
+                    - Kurang sabar
+                    - Fokus pada hasil
+                    - Menepati masa
+                    - Beri perhatian pada apa yang boleh dilihat
+                    - Suka penjelasan ringkas & padat
+
+                    ''',
+            'A': '''Ciri-ciri orang **AUDITORI**:
+                    - Berfikir dahulu sebelum bercakap
+                    - Berfikir dengan rasional dan logikal
+                    - Sangat teliti
+                    - Suka memahami keadaan sekeliling
+                    - Suka belajar dengan memikirkannya
+                    - Tidak suka di arah
+                    - Perlukan masa untuk memproses maklumat
+
+
+                    ''',
+            'K': '''Ciri-ciri orang **KINESTETIK**:
+                    - Cakap sangat perlahan
+                    - Sentuh dada atau dagu
+                    - Pandang ke bawah
+                    - Belajar dengan membuat
+                    - Sensitif pada orang lain
+                    - Ahli pasukan yang baik
+                    - Teliti dalam pekerjaan yang dilakukan
+                    - Setia
+
+
+                    ''',
+            'D': '''Ciri-ciri orang **DIGITAL**:
+                    - Berfikir dahulu sebelum bercakap
+                    - Berfikir dengan rasional dan logikal
+                    - Sangat teliti
+                    - Suka memahami keadaan sekeliling
+                    - Suka belajar dengan memikirkannya
+                    - Tidak suka di arah
+                    - Perlukan masa untuk memproses maklumat
+
+
+                    '''
         }
 
         # Create a container for the images and text
