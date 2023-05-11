@@ -3,18 +3,9 @@ import pandas as pd
 import altair as alt
 from PIL import Image
 import emoji
-from google.oauth2 import service_account
-from gsheetsdb import connect
+import gspread
+from google.oauth2.service_account import Credentials
 
-has_submitted_details = False
-# Create a connection object.
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-    ],
-)
-conn = connect(credentials=credentials)
 
 st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
 
@@ -37,17 +28,27 @@ gender = gender_age_columns[0].selectbox("Jantina:", gender_options)
 age = gender_age_columns[1].number_input("Umur:", min_value=1, max_value=80, step=1)
 st.markdown("<br>", unsafe_allow_html=True)  # Add an empty line or spacing before the "Submit" button
 
+def write_to_sheet(client, url, data):
+    sheet = client.open_by_url(url).sheet1  # If your worksheet has a different name, replace 'sheet1' with the name of your worksheet
+    sheet.append_row(data)
+
+scopes = [
+    "https://www.googleapis.com/auth/spreadsheets",
+]
+
+skey = st.secrets["gcp_service_account"]
+credentials = Credentials.from_service_account_info(
+    skey,
+    scopes=scopes,
+)
+client = gspread.authorize(credentials)
+
 if st.button("Hantar Maklumat"):
     if name and gender != "--Pilih jantina--" and age:
         st.success(f"Maklumat berjaya direkod.")
-        # Record data to Google Sheets
-        sheet_url = st.secrets["private_gsheets_url"]
-        query = f'INSERT INTO "{sheet_url}" (NAMA, JANTINA, UMUR) VALUES ("{name}", "{gender}", {age})'
-        conn.execute(query)
+
     else:
         st.warning("Sila isikan semua butiran di atas.")
-
-
 
 
 sub_questions = [
@@ -164,11 +165,7 @@ if st.button("Hantar"):
         sorted_categories.remove("total")
 
         result = "".join(sorted_categories) 
-        # Record scores to Google Sheets
-        sheet_url = st.secrets["private_gsheets_url"]
-        query = f'UPDATE "{sheet_url}" SET V = {scores["V"]}, A = {scores["A"]}, K = {scores["K"]}, D = {scores["D"]}, SUSUNAN = "{result}" WHERE NAMA = "{name}" AND JANTINA = "{gender}" AND UMUR = {age}'
-        conn.execute(query)
-        
+        write_to_sheet(client, 'https://docs.google.com/spreadsheets/d/123mW3XWYGA1Zm8_Faa89y9Sus174TSktENaxP1kIjyU/edit?usp=sharing', [name, gender, age, scores["V"], scores["A"], scores["K"], scores["D"], result]) 
         st.header(f"Susunan anda memproses maklumat ialah: {result}")
 
         df = pd.DataFrame.from_dict(scores, orient='index', columns=['score'])
