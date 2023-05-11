@@ -167,7 +167,7 @@ if st.button("Hantar"):
 
         result = "".join(sorted_categories) 
         write_to_sheet(client, 'https://docs.google.com/spreadsheets/d/123mW3XWYGA1Zm8_Faa89y9Sus174TSktENaxP1kIjyU/edit?usp=sharing', [name, gender, age, scores["V"], scores["A"], scores["K"], scores["D"], result]) 
-        st.header(f"Susunan anda memproses maklumat ialah: {result}")
+        st.header(f"Kecenderungan anda ialah: {result}")
 
         df = pd.DataFrame.from_dict(scores, orient='index', columns=['score'])
         df = df.reset_index().rename(columns={'index':'category'})
