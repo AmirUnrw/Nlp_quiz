@@ -4,3 +4,4 @@ altair
 Pillow
 google-api-python-client
 emoji
+gsheetsdb
