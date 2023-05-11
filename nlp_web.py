@@ -202,18 +202,16 @@ if st.button("Hantar"):
 - Menepati masa
 - Beri perhatian pada apa yang boleh dilihat
 - Suka penjelasan ringkas & padat
-
 ''',
             'A': '''Ciri-ciri orang **AUDITORI**:
-- Berfikir dahulu sebelum bercakap
-- Berfikir dengan rasional dan logikal
-- Sangat teliti
-- Suka memahami keadaan sekeliling
-- Suka belajar dengan memikirkannya
-- Tidak suka di arah
-- Perlukan masa untuk memproses maklumat
-
-
+-Cakap dengan fasih
+-Sentuh mulut dan telinga
+-Belajar dengan mendengar
+-Pandang ke sisi
+-Suka berbual
+-Vokal dalam memberi pandangan
+-Banyak idea dan suka beri cadangan
+-Lebih kasual
 ''',
             'K': '''Ciri-ciri orang **KINESTETIK**:
 - Cakap sangat perlahan
@@ -224,8 +222,6 @@ if st.button("Hantar"):
 - Ahli pasukan yang baik
 - Teliti dalam pekerjaan yang dilakukan
 - Setia
-
-
 ''',
             'D': '''Ciri-ciri orang **DIGITAL**:
 - Berfikir dahulu sebelum bercakap
@@ -235,8 +231,6 @@ if st.button("Hantar"):
 - Suka belajar dengan memikirkannya
 - Tidak suka di arah
 - Perlukan masa untuk memproses maklumat
-
-
 '''
         }
 
