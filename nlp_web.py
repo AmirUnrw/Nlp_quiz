@@ -161,6 +161,8 @@ for index, question in enumerate(sub_questions):
 if st.button("Hantar"):
     if not all_questions_answered:
         st.warning("Sila pilih jawapan bagi setiap soalan sebelum menghantar.")
+    elif not name or gender == "--Pilih jantina--" or not age:
+        st.warning("Sila isikan semua butiran di atas sebelum menghantar soalan.")
     else:
         sorted_categories = sorted(scores.keys(), key=lambda x: scores[x], reverse=True)
         sorted_categories.remove("total")
