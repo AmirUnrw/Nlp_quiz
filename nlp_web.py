@@ -7,13 +7,12 @@ import gspread
 from google.oauth2.service_account import Credentials
 
 
-st.set_page_config(page_title='Quiz', page_icon=':bar_chart:', layout="wide")
+st.set_page_config(page_title='Quiz NLP', page_icon=':bar_chart:', layout="wide")
 
 st.title("🧠Quiz Neuro-Linguistic Programming")
 st.write(
     """
-Hai! Adakah anda ingin tahu bagaimana anda berkomunikasi dan membuat keputusan?
-    Kuiz ini direka untuk membantu anda mengenal pasti kecenderungan anda dalam berkomunikasi dan membuat keputusan yang terbahagi kepada empat kategori: **Visual** (**V**), **Auditori** (**A**), **Kinestetik** (**K**), **Digital** (**D**). Dengan memahami gaya unik anda, anda boleh meningkatkan kesedaran diri, memperbaiki interaksi dengan orang lain, dan membuat keputusan yang lebih efektif dalam pelbagai situasi. Ikuti kuiz ini untuk mengetahui gaya peribadi anda dan membuka kunci ke arah komunikasi dan kerjasama dalam organisasi yang lebih baik!
+Kuiz ini direka untuk membantu anda mengenal pasti kecenderungan anda dalam berkomunikasi dan membuat keputusan yang terbahagi kepada empat kategori: **Visual** (**V**), **Auditori** (**A**), **Kinestetik** (**K**), **Digital** (**D**). Dengan memahami gaya unik anda, anda boleh memperbaiki interaksi dengan orang lain dan membuat keputusan yang lebih efektif dalam pelbagai situasi. Ikuti kuiz ini untuk mengetahui gaya peribadi anda dan membuka kunci ke arah komunikasi dan kerjasama dalam organisasi yang lebih baik!
 """)
 st.subheader("📝Sila isikan maklumat anda:")
 
@@ -162,7 +161,7 @@ if st.button("Hantar"):
     if not all_questions_answered:
         st.warning("Sila pilih jawapan bagi setiap soalan sebelum menghantar.")
     elif not name or gender == "--Pilih jantina--" or not age:
-        st.warning("Sila isikan semua butiran di atas sebelum menghantar soalan.")
+        st.warning("Sila isikan semua butiran diri anda sebelum menghantar soalan.")
     else:
         sorted_categories = sorted(scores.keys(), key=lambda x: scores[x], reverse=True)
         sorted_categories.remove("total")
@@ -186,10 +185,10 @@ if st.button("Hantar"):
 
         # Define the image URLs for each category
         category_images = {
-            'V': "https://i.postimg.cc/Lsm3t2wf/e.png",
-            'A': "https://i.postimg.cc/fTmT61wD/a.png",
-            'K': "https://i.postimg.cc/8zZmmqS0/k.png",
-            'D': "https://i.postimg.cc/yYvZMcbJ/r.png"
+            'V': "https://i.postimg.cc/6QWL2DhK/Slide4.png",
+            'A': "https://i.postimg.cc/3JQG0sKq/Slide7.png",
+            'K': "https://i.postimg.cc/2SwnD0NK/Slide5.png",
+            'D': "https://i.postimg.cc/Mpdf4Xyk/Slide6.png"
         }
 
         # Define the text for each category
