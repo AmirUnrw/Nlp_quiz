@@ -59,7 +59,7 @@ sub_questions = [
     {"question": "Nada dan intonasi orang", "category": "A"},
     {"question": "Sama ada saya boleh melihat pandangan orang atau tidak", "category": "V"},
     {"question": "Logik dan rasional pandangan orang", "category": "D"},
-    {"question": "Sama ada orang sensitif atau tdak terhadap perasaan saya", "category": "K"},
+    {"question": "Sama ada orang sensitif atau tidak terhadap perasaan saya", "category": "K"},
     {"question": "Rupa dan pemakaian saya", "category": "V"},
     {"question": "Berkongsi perasaan dan pengalaman", "category": "K"},
     {"question": "Mengetahui maksud perkataan saya difahami", "category": "D"},
