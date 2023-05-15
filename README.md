@@ -1,2 +1,2 @@
 # nlp_quiz
-nlp quiz for operator
+Neuro Linguistic Programming Quiz- Kenali gaya anda berkomunikasi dan membuat keputusan untuk meningkatkan prestasi anda dalam sesebuah organisasi
